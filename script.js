@@ -1,4 +1,4 @@
-const canvas = document.getElementById("myCanvas");
+const canvas = document.getElementById("canvas");
 const gfx = canvas.getContext("2d");
 
 const keycode = {
@@ -52,7 +52,7 @@ const game = {
     timePrev: 0,
     dt: 0,
     begin:function(){
-        mouse.update();
+        mouse.setup();
         keyboard.setup();
         this.update(0);
     },
