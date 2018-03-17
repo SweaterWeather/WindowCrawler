@@ -35,6 +35,7 @@ const game = {
             this.scene.draw(this.gfx);
             if(nextScene){
                 this.scene = nextScene;
+                this.scene.init();
             }
         }
         
