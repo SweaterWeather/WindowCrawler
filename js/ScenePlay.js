@@ -1,9 +1,15 @@
 function ScenePlay(){
     this.windows = [];
     this.activeWindow = null;
+    this.roomWidth = 215;
+    this.roomHeight = 210;
     
     this.init = function(){
-        this.addWindow();
+        var temp = 0;
+        while (temp < 10){
+            this.addWindow(temp * 150, temp * 50);
+            temp++;
+        }
     }
     
     this.update = function(dt){
@@ -18,9 +24,9 @@ function ScenePlay(){
         game.clear();
         
     };
-    this.addWindow = function(){
+    this.addWindow = function(x, y){
         //This is where you open up new windows!
-        this.windows.push(window.open('win2.html', 'floor' + this.windows.length, 'width=215,height=210,left=100,top=100'));
+        this.windows.push(window.open('win2.html', 'floor' + this.windows.length, 'width=' + this.roomWidth + ',height=' + this.roomHeight + ',left=' + x + ',top=' + y + ''));
     }
 } 
 
