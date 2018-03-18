@@ -14,7 +14,7 @@ function ScenePlay(){
             temp++;
         }
         var block = new Block();
-        block.init(100, 100);
+        block.init(500, 200);
         this.blocks.push(block);
     }
     

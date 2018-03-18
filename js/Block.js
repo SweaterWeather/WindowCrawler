@@ -3,6 +3,7 @@ function Block(){
     this.y = 0;
     this.w = 500;
     this.h = 10;
+    this.win = null;
     this.init = function(x, y){
         this.x = x;
         this.y = y;
@@ -12,7 +13,7 @@ function Block(){
     }
     this.draw = function(gfx){
         gfx.fillStyle = "#000";
-        gfx.translate(this.x - window.screenX, this.y - window.screenY);
+        gfx.translate(this.x - this.win.screenX, this.y - this.win.screenY);
         gfx.fillRect(-this.w/2, -this.h/2, this.w, this.h);
         gfx.resetTransform();
         
@@ -22,5 +23,8 @@ function Block(){
         this.y = other.y;
         this.w = other.w;
         this.h = other.h;
+    }
+    this.setWindow = function(win){
+        this.win = win;
     }
 }

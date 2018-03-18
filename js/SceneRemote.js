@@ -31,16 +31,18 @@ const game = {
         keyboard.update();
     },
     demoBlockUpdate:function(){
-        this.blocks = [];
+        /*this.blocks = [];
         this.state.blocks.forEach((b) =>{
             var block = new Block();
             block.replicate(b);
             this.blocks.push(block);
-        });
+        });*/
         
         this.clear();
 
-        this.blocks.forEach((b, index) =>{
+        this.state.blocks.forEach((b, index) =>{
+            //
+            b.setWindow(window);
             b.draw(this.gfx);
         });
     },
