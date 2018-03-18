@@ -1,6 +1,6 @@
 function SceneTitle(){
     
-    this.title = new TextField("This is the Title", game.width/2, 100, 30);
+    this.title = new TextField("Dungeon Surfer", game.width/2, 100, 30);
     this.tag = new TextField("Press [ENTER] to play!", game.width/2, 150, 14);
     this.enablePop = new TextField("Please enable popups on this window.", game.width/2, 200, 10);
     this.enablePop2 = new TextField("This is a meta gamejam for games about genre subversion and breaking the fouth wall, you", game.width/2, 235, 10);
