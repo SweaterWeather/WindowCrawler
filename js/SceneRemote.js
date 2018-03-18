@@ -49,6 +49,7 @@ const game = {
     setState:function(newState){
         this.state = newState;
     },
+    //only use this to send keyboard info
     send:function(){
         opener.window.recieveMsg(/*This is where you send information to the main application!*/);
     },
