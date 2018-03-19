@@ -7,7 +7,7 @@ function SceneTitle(){
     this.enablePop3 = new TextField("should have expected at least one cheeky game about opening lots of windows.", game.width/2, 250, 10);
     this.init = function(){
         
-    }
+    };
     this.update = function(dt){
         if(keyboard.onDown(keycode.enter)){
             return new ScenePlay();

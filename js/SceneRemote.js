@@ -9,7 +9,6 @@ const game = {
     width:500,
     height:400,
     state: null,
-    blocks: [],
     begin:function(id){
         
         const canvas = document.getElementById(id);
@@ -26,24 +25,18 @@ const game = {
     
         this.demoBlockUpdate();//temporary for demo purposes
         
-        
+        console.log(dt);
         ///////////////////////////// LATE UPDATE:
         keyboard.update();
     },
     demoBlockUpdate:function(){
-        /*this.blocks = [];
-        this.state.blocks.forEach((b) =>{
-            var block = new Block();
-            block.replicate(b);
-            this.blocks.push(block);
-        });*/
         
         this.clear();
 
-        this.state.blocks.forEach((b, index) =>{
+        this.state.renderQ.forEach((q, index) =>{
             //
-            b.setWindow(window);
-            b.draw(this.gfx);
+            q.setWindow(window);
+            q.draw(this.gfx);
         });
     },
     setState:function(newState){

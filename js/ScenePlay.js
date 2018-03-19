@@ -1,21 +1,21 @@
 function ScenePlay(){
     this.windows = [];
     this.activeWindow = null;
-    this.roomWidth = 215;
-    this.roomHeight = 210;
+    this.roomWidth = 265;
+    this.roomHeight = 260;
     
-    this.blocks = [];
+    this.renderQ = [];
     
     //This init function is my stand-in for the constructor.  in this case its contents are placeholder, as the spawning of two windows and a single block is not our desired end goal.
     this.init = function(){
         var temp = 0;
-        while (temp < 2){
+        while (temp < 5){
             this.addWindow(temp * 150, temp * 50);
             temp++;
         }
-        var block = new Block();
-        block.init(500, 200);
-        this.blocks.push(block);
+        var room = new Room();
+        room.init();
+        this.renderQ.push(room);
     }
     
     this.update = function(dt){

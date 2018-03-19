@@ -1,5 +1,5 @@
-//This is the template for objects that will be held in global space.
-function Block(){
+//This is the template for objects that will be held in local space.
+function Tile(){
     this.x = 0;
     this.y = 0;
     this.w = 25;
@@ -16,8 +16,10 @@ function Block(){
     }
     this.draw = function(gfx){
         gfx.fillStyle = this.color;
-        gfx.translate(this.x - this.win.screenX, this.y - this.win.screenY);
-        gfx.fillRect(-this.w/2, -this.h/2, this.w, this.h);
+        gfx.translate(this.x, this.y);
+        gfx.strokeStyle = '#000';
+        gfx.fillRect(0, 0, this.w, this.h);
+        gfx.strokeRect(0, 0, this.w, this.h);
         gfx.resetTransform();
         
     }
