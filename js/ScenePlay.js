@@ -1,28 +1,34 @@
 function ScenePlay(){
     this.windows = [];
+    this.rooms = [];
     this.activeWindow = null;
     this.roomWidth = 265;
     this.roomHeight = 260;
+    this.dungeon;
     
     this.renderQ = [];
     
     //This init function is my stand-in for the constructor.  in this case its contents are placeholder, as the spawning of two windows and a single block is not our desired end goal.
     this.init = function(){
+        this.dungeon = new Dungeon();
+        this.renderQ.push(this.dungeon);
+        
+        //TEMPORARY TEST CODE
         var temp = 0;
         while (temp < 5){
             this.addWindow(temp * 150, temp * 50);
             temp++;
         }
-        var room = new Room();
-        room.init();
-        this.renderQ.push(room);
+        //END TEMP
     }
     
     this.update = function(dt){
         
         this.windows.forEach((win) =>{
             if(!win.window.closed && win.update)win.update(dt, this);
+            //console.log(win.document.hasFocus()); //this is how you check if a window has focus or not.
         });
+        this.windows[0].window.focus();
     };
     this.draw = function(gfx){
         game.clear();
@@ -31,7 +37,11 @@ function ScenePlay(){
     //This function opens up a new remote window and adds it to the windows array.
     this.addWindow = function(x, y){
         //This is where you open up new windows!
-        this.windows.push(window.open('win2.html', 'floor' + this.windows.length, 'width=' + this.roomWidth + ',height=' + this.roomHeight + ',left=' + x + ',top=' + y + ''));
+        var newWin = window.open('win2.html', 'floor' + this.windows.length, 'width=' + this.roomWidth + ',height=' + this.roomHeight + ',left=' + x + ',top=' + y + '');
+        
+        this.dungeon.addRoom(newWin.name);
+        
+        this.windows.push(newWin);
     }
 } 
 

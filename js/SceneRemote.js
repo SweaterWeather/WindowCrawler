@@ -25,7 +25,6 @@ const game = {
     
         this.demoBlockUpdate();//temporary for demo purposes
         
-        console.log(dt);
         ///////////////////////////// LATE UPDATE:
         keyboard.update();
     },
