@@ -40,7 +40,7 @@ const game = {
         }
         
         ///////////////////////////// LATE UPDATE:
-    keyboard.update();
+        if(document.hasFocus())keyboard.update();
         requestAnimationFrame((time) => this.update(time));
     },
     clear:function(){

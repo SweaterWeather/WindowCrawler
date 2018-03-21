@@ -27,6 +27,8 @@ const game = {
         
         ///////////////////////////// LATE UPDATE:
         keyboard.update();
+        
+        if(document.hasFocus())this.send([keyboard.keys, keyboard.prev]);
     },
     demoBlockUpdate:function(){
         
@@ -42,8 +44,8 @@ const game = {
         this.state = newState;
     },
     //only use this to send keyboard info
-    send:function(){
-        opener.window.recieveMsg(/*This is where you send information to the main application!*/);
+    send:function(msg){
+        opener.window.recieveMsg(msg/*This is where you send information to the main application!*/);
     },
     clear:function(){
         this.gfx.clearRect(0, 0, this.width, this.height); // clear screen

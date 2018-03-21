@@ -1,10 +1,11 @@
 function ScenePlay(){
     this.windows = {};
     this.rooms = [];
-    this.activeWindow = null;
+    this.activeWindow = '';
     this.roomWidth = 265;
     this.roomHeight = 260;
     this.dungeon;
+    this.currentDungeon = '';
     
     this.renderQ = [];
     
@@ -12,10 +13,10 @@ function ScenePlay(){
     this.init = function(){
         this.dungeon = new Dungeon();
         this.renderQ.push(this.dungeon);
+        this.currentDungeon = "demoDungeon";
         
         //TEMPORARY TEST CODE
-        var temp = 0;
-        this.addWindow(temp * 150, temp * 50);
+        this.addWindow(0, 0, dungeonTemplates[this.currentDungeon].firstRoom);
         //END TEMP
     }
     
@@ -24,7 +25,12 @@ function ScenePlay(){
         for(var key in this.windows){
             var win = this.windows[key];
             if(!win.window.closed && win.update)win.update(dt, this);
-            //console.log(win.document.hasFocus()); //this is how you check if a window has focus or not.
+            else if(win.window.closed){
+                if(key == dungeonTemplates[this.currentDungeon].firstRoom){
+                    this.addWindow(0, 0, dungeonTemplates[this.currentDungeon].firstRoom);
+                }
+            }
+            if(win.document.hasFocus())this.activeWindow = key;
         }
         
     };
@@ -33,9 +39,9 @@ function ScenePlay(){
     };
     
     //This function opens up a new remote window and adds it to the windows array.
-    this.addWindow = function(x, y){
+    this.addWindow = function(x, y, code){
         //This is where you open up new windows!
-        var newWin = window.open('win2.html', dungeonTemplates["demoDungeon"].firstRoom, 'width=' + this.roomWidth + ',height=' + this.roomHeight + ',left=' + x + ',top=' + y + '');
+        var newWin = window.open('win2.html', code, 'width=' + this.roomWidth + ',height=' + this.roomHeight + ',left=' + x + ',top=' + y + '');
         
         this.dungeon.addRoom(newWin.name);
         
@@ -60,12 +66,16 @@ function ScenePlay(){
         
         return true;
     }
+    this.incomingKeyboard = function(keys){
+        keyboard.keys = keys[0].slice(0);
+        keyboard.prev = keys[1].slice(0);
+    }
 } 
 
 //This is where we will recieve keyboard inputs from the remote windows.  Ideally this should be the ONLY msg info we recieve.  You do not need to send the remote windows positions using this, you can access those easily with "*insertWindow*.window.screenX".  Same goes for on close logic, you can check any window to see if it is closed.
 recieveMsg = function(msg){
     //This is where you recieve information from the smaller windows!
-    console.log(msg);
+    if(game.scene.incomingKeyboard)game.scene.incomingKeyboard(msg);
 }
 
 /*TODO: 
