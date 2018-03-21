@@ -27,9 +27,10 @@ function Dungeon(){
     this.setWindow = function(win){
         this.win = win;
     };
+    //When we have an algorithm for scripted rooms, put it here!
     this.addRoom = function(room){
         if(!this.rooms[room]){
-            var newroom  = new Room();
+            var newroom  = new Room(room);
             newroom.init(parseInt(Math.random()*10).toString() + '5');
             
             this.rooms[room] = newroom;

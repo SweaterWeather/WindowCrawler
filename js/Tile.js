@@ -6,6 +6,9 @@ function Tile(){
     this.h = 25;
     this.color = "#000";
     this.win = null;
+    
+    this.tileType = "tile"; //tile(floor), door code(insert the name of the room this door leads to), or wall for now
+    
     this.init = function(x, y, color){
         this.x = x;
         this.y = y;

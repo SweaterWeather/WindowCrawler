@@ -1,5 +1,5 @@
 function ScenePlay(){
-    this.windows = [];
+    this.windows = {};
     this.rooms = [];
     this.activeWindow = null;
     this.roomWidth = 265;
@@ -15,20 +15,18 @@ function ScenePlay(){
         
         //TEMPORARY TEST CODE
         var temp = 0;
-        while (temp < 5){
-            this.addWindow(temp * 150, temp * 50);
-            temp++;
-        }
+        this.addWindow(temp * 150, temp * 50);
         //END TEMP
     }
     
     this.update = function(dt){
         
-        this.windows.forEach((win) =>{
+        for(var key in this.windows){
+            var win = this.windows[key];
             if(!win.window.closed && win.update)win.update(dt, this);
             //console.log(win.document.hasFocus()); //this is how you check if a window has focus or not.
-        });
-        this.windows[0].window.focus();
+        }
+        
     };
     this.draw = function(gfx){
         game.clear();
@@ -37,11 +35,30 @@ function ScenePlay(){
     //This function opens up a new remote window and adds it to the windows array.
     this.addWindow = function(x, y){
         //This is where you open up new windows!
-        var newWin = window.open('win2.html', 'floor' + this.windows.length, 'width=' + this.roomWidth + ',height=' + this.roomHeight + ',left=' + x + ',top=' + y + '');
+        var newWin = window.open('win2.html', dungeonTemplates["demoDungeon"].firstRoom, 'width=' + this.roomWidth + ',height=' + this.roomHeight + ',left=' + x + ',top=' + y + '');
         
         this.dungeon.addRoom(newWin.name);
         
-        this.windows.push(newWin);
+        this.windows[newWin.name] = newWin;
+    }
+    this.roomCollision = function(win1, win2){
+        
+        var up1 = win1.window.screenY;
+        var down1 = win1.window.screenY + this.roomHeight;
+        var right1 = win1.window.screenX + this.roomWidth;
+        var left1 = win1.window.screenX;
+        
+        var up2 = win2.window.screenY;
+        var down2 = win2.window.screenY + this.roomHeight;
+        var right2 = win2.window.screenX + this.roomWidth;
+        var left2 = win2.window.screenX;
+        
+        if(up1 > down2)return false;
+        if(up2 > down1)return false;
+        if(left1 > right2)return false;
+        if(left2 > right1)return false;
+        
+        return true;
     }
 } 
 
