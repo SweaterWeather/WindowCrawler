@@ -38,8 +38,8 @@ function Room(name){
     };
     this.mb = function(x, y, color, type){
         var b = new Tile();
-        b.init(x * 25, y * 25, color);
         b.tileType = type;
+        b.init(x * 25, y * 25, color);
         return b;
     };    
     this.setWindow = function(win){
