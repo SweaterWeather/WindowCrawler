@@ -6,6 +6,7 @@ function ScenePlay(){
     this.roomHeight = 270;
     this.dungeon;
     this.currentDungeon = '';
+    this.player = null;
     
     this.renderQ = [];
     
@@ -14,6 +15,10 @@ function ScenePlay(){
         this.dungeon = new Dungeon();
         this.renderQ.push(this.dungeon);
         this.currentDungeon = "demoDungeon";
+        
+        this.player = new Player();
+        this.renderQ.push(this.player);
+        this.player.init(50,50, "#000");
         
         //TEMPORARY TEST CODE
         var sW = document.documentElement.clientWidth / 2 - this.roomWidth / 2;
@@ -50,7 +55,7 @@ function ScenePlay(){
                 }
             }
         }
-        
+        this.player.update(dt);
     };
     this.draw = function(gfx){
         game.clear();
