@@ -52,9 +52,4 @@ const game = {
     }
 };
 
-var adLeft = null;
-var adRight = null;
-var adUp = null;
-var adLeft = null;
-
 game.begin("myCanvas");

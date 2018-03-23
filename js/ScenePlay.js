@@ -2,8 +2,8 @@ function ScenePlay(){
     this.windows = {};
     this.rooms = [];
     this.activeWindow = '';
-    this.roomWidth = 265;
-    this.roomHeight = 260;
+    this.roomWidth = 275;
+    this.roomHeight = 270;
     this.dungeon;
     this.currentDungeon = '';
     
@@ -16,7 +16,9 @@ function ScenePlay(){
         this.currentDungeon = "demoDungeon";
         
         //TEMPORARY TEST CODE
-        this.addWindow(0, 0, dungeonTemplates[this.currentDungeon].firstRoom);
+        var sW = document.documentElement.clientWidth / 2 - this.roomWidth / 2;
+        var sH = document.documentElement.clientHeight / 2 - this.roomHeight / 2;
+        this.addWindow(sW + window.screenX, sH + window.screenY, dungeonTemplates[this.currentDungeon].firstRoom);
         //END TEMP
     }
     
@@ -27,7 +29,10 @@ function ScenePlay(){
             if(!win.window.closed && win.update)win.update(dt, this);
             else if(win.window.closed){
                 if(key == dungeonTemplates[this.currentDungeon].firstRoom){
-                    this.addWindow(0, 0, dungeonTemplates[this.currentDungeon].firstRoom);
+                    var sW = document.documentElement.clientWidth / 2 - this.roomWidth / 2;
+                    var sH = document.documentElement.clientHeight / 2 - this.roomHeight / 2;
+                    this.addWindow(sW + window.screenX, sH + window.screenY, dungeonTemplates[this.currentDungeon].firstRoom);
+
                 }
             }
             if(win.document.hasFocus())this.activeWindow = key;
