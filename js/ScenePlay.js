@@ -53,7 +53,6 @@ function ScenePlay(){
         this.windows[newWin.name] = newWin;
     }
     this.roomCollision = function(win1, win2){
-        
         var up1 = win1.window.screenY;
         var down1 = win1.window.screenY + this.roomHeight;
         var right1 = win1.window.screenX + this.roomWidth;
@@ -70,6 +69,9 @@ function ScenePlay(){
         if(left2 > right1)return false;
         
         return true;
+    }
+    this.roomProximalCollison = function(win1, win2, side){
+        
     }
     this.incomingKeyboard = function(keys){
         keyboard.keys = keys[0].slice(0);
