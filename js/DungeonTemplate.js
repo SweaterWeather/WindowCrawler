@@ -1,3 +1,4 @@
+//Any dungeons should be added to this associative array with unique keycodes.  To access them, set ScenePlay.currentDungeon equal to the keycode of this dungeon.
 const dungeonTemplates = {};
 
 dungeonTemplates["demoDungeon"] = {

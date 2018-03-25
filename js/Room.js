@@ -1,4 +1,10 @@
 function Room(name){
+    
+    var adLeft = null;
+    var adRight = null;
+    var adUp = null;
+    var adDown = null;
+    
     this.win = null;
     this.name = name;
     this.grid = [

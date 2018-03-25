@@ -1,3 +1,4 @@
+//This associative array stores ALL rooms to be loaded.  It is VITAL that you add new rooms to this array with some kind of unique keycode.  Room keycodes MUST be unique, even if the room layouts are identical.
 const roomTemplates = {};
 
 roomTemplates["TRC1"] = {
