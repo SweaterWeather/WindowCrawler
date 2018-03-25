@@ -74,9 +74,6 @@ function Player(){
                     break;
             }
         }
-        console.log(this.isMoving);
-        console.log(this.gX);
-        console.log(this.gY);
     };
     this.draw = function(gfx){
         if(this.win.name != this.currentRoom) return;
