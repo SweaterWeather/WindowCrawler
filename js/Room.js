@@ -19,27 +19,15 @@ function Room(name){
             while (int < 10){
                 var color = '';
                 
-                var type = roomTemplates[this.name].grid[index][int];
-                switch(type){
-                    case 'wall':
-                        color = '#900';
-                        break;
-                    case '    ':
-                        color = '#090';
-                        break;
-                    default:
-                        color = '#009';
-                        break;
-                }
-                x.push(this.mb(int, index, color, type));
+                
+                x.push(this.mb(int, index));
+                x[int].init(int * 25, index * 25, this.name);
                 int++;
             }
         });
     };
-    this.mb = function(x, y, color, type){
+    this.mb = function(x, y){
         var b = new Tile();
-        b.tileType = type;
-        b.init(x * 25, y * 25, color);
         return b;
     };    
     this.setWindow = function(win){

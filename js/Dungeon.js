@@ -31,9 +31,9 @@ function Dungeon(){
     this.addRoom = function(room){
         if(!this.rooms[room]){
             var newroom  = new Room(room);
-            newroom.init(parseInt(Math.random()*10).toString() + '5');
             
             this.rooms[room] = newroom;
+            newroom.init(parseInt(Math.random()*10).toString() + '5');
         }
     };
 }
