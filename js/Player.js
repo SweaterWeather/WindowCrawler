@@ -19,7 +19,12 @@ function Player(){
         this.gY = y/25;
         this.color = color;
         this.currentRoom = "TRC1";
-        if (game.scene.dungeon) this.grid = game.scene.dungeon.rooms[this.currentRoom];
+        if (game.scene.dungeon) {
+            this.grid = roomTemplates[this.currentRoom];
+            //this.grid = game.scene.dungeon.rooms;
+            console.log(this.grid);
+            console.log(roomTemplates[this.currentRoom]);
+        };
     };
     this.update = function(dt){
         
