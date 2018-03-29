@@ -8,6 +8,8 @@ function Player(){
     this.h = 50;
     this.speed = 100;
     this.grid = [];
+    this.gridY = [];
+    this.gridPosition = "";
     this.isMoving = false;
     this.currentRoom = "";
     this.color = "#000";
@@ -21,9 +23,15 @@ function Player(){
         this.currentRoom = "TRC1";
         if (game.scene.dungeon) {
             this.grid = roomTemplates[this.currentRoom];
+            this.grid = this.grid.grid;
+            this.gridY = this.grid[this.gY];
+            this.gridPosition = this.gridY[this.gX];
+            
             //this.grid = game.scene.dungeon.rooms;
             console.log(this.grid);
             console.log(roomTemplates[this.currentRoom]);
+            console.log(this.gridY);
+            console.log(this.gridPosition);
         };
     };
     this.update = function(dt){

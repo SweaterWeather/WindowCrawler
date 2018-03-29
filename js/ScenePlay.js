@@ -18,7 +18,7 @@ function ScenePlay(){
         
         this.player = new Player();
         this.renderQ.push(this.player);
-        this.player.init(50,50, "#000");
+        this.player.init(50, 50, "#000");
         
         //TEMPORARY TEST CODE
         var sW = document.documentElement.clientWidth / 2 - this.roomWidth / 2;
