@@ -75,7 +75,7 @@ function Tile(){
             case "null":
                 break;
             case "trch":
-                this.sprite = new Sprite("../imgs/player/player-test.png, ");
+                this.sprite = new Sprite("../imgs/floor_layout/torch.png");
                 break;
             default :
                 //if entryway
