@@ -76,11 +76,11 @@ function Tile(){
             case "null":
                 break;
             case "trch":
-                if(this.isTorchLit === true){
-                    this.sprite = new Sprite("../imgs/floor_layout/torch-lit.png");
-                } else {
-                    this.sprite = new Sprite("../imgs/floor_layout/torch.png");
-                }
+                this.sprite = new Sprite("../imgs/floor_layout/torch.png");
+                break;
+            case "tchl":
+                this.isTorchLit = true;
+                this.sprite = new Sprite("../imgs/floor_layout/torch-lit.png");
                 break;
             default :
                 //if entryway

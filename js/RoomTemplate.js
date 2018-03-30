@@ -5,7 +5,7 @@ roomTemplates["TRC1"] = {
     grid: [
         ["wall", "wall", "wall", "wall", "TRU1", "TRU1", "wall", "wall", "wall", "wall"],
         ["wall", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "wall"],
-        ["wall", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "wall"],
+        ["wall", "    ", "    ", "    ", "    ", "    ", "    ", "tchl", "    ", "wall"],
         ["wall", "    ", "    ", "    ", "wall", "wall", "    ", "    ", "wall", "wall"],
         ["TRL1", "    ", "    ", "wall", "wall", "wall", "wall", "    ", "TRR1", "wall"],
         ["TRL1", "    ", "    ", "wall", "wall", "wall", "wall", "    ", "TRR1", "wall"],
