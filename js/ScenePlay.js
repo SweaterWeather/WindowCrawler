@@ -154,6 +154,9 @@ function ScenePlay(){
         
         return true;
     }
+    this.moveRoom = function(){
+        
+    }
     this.incomingKeyboard = function(keys){
         keyboard.keys = keys[0].slice(0);
         keyboard.prev = keys[1].slice(0);

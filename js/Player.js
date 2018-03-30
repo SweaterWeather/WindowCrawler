@@ -115,6 +115,9 @@ function Player(){
             case "wall":
                 return true;
                 break;
+            default:
+                if(game.scene.moveRoom)return game.scene.moveRoom();
+                break;
         };
         return false;
     };

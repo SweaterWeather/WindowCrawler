@@ -1,9 +1,14 @@
 function Room(name){
     
-    var adLeft = null;
-    var adRight = null;
-    var adUp = null;
-    var adDown = null;
+    this.adLeft = null;
+    this.adRight = null;
+    this.adUp = null;
+    this.adDown = null;
+    
+    this.leftDoor = null;
+    this.rightDoor = null;
+    this.upDoor = null;
+    this.downDoor = null;
     
     this.win = null;
     this.name = name;
