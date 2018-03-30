@@ -74,6 +74,9 @@ function Tile(){
                 break;
             case "null":
                 break;
+            case "trch":
+                this.sprite = new Sprite("../imgs/player/player-test.png, ");
+                break;
             default :
                 //if entryway
                      if(!adDOWN.match(door) && adRIGHT == "    ")this.sprite = new Sprite("../imgs/floor_layout/tile-wall-entry-leftUp.png");

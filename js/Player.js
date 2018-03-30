@@ -115,6 +115,9 @@ function Player(){
             case "wall":
                 return true;
                 break;
+            case "trch":
+                return true;
+                break;
         };
         return false;
     };

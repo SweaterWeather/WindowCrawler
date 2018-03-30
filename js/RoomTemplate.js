@@ -10,7 +10,7 @@ roomTemplates["TRC1"] = {
         ["TRL1", "    ", "    ", "wall", "wall", "wall", "wall", "    ", "TRR1", "wall"],
         ["TRL1", "    ", "    ", "wall", "wall", "wall", "wall", "    ", "TRR1", "wall"],
         ["wall", "    ", "    ", "    ", "wall", "wall", "    ", "    ", "wall", "wall"],
-        ["wall", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "wall"],
+        ["wall", "    ", "trch", "    ", "    ", "    ", "    ", "    ", "    ", "wall"],
         ["wall", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "wall"],
         ["wall", "wall", "wall", "wall", "TRD1", "TRD1", "wall", "wall", "wall", "wall"]
     ]
