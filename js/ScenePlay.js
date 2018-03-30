@@ -166,6 +166,24 @@ function ScenePlay(){
     this.moveRoom = function(newRoom){
         //console.log("hit a door");
         if(!this.windows[newRoom] || this.windows[newRoom].window || this.windows[newRoom].window.closed) this.addWindow(0,0,newRoom);
+        this.hasMoved = false;
+        this.dungeon.rooms[newRoom].grid.forEach((array)=> {
+            array.forEach((tile)=>{
+                if(this.hasMoved == false) {
+                    if(this.player.currentRoom == tile.tileType){
+                        if(tile.gridX == this.player.gX) {
+                            this.player.gY = tile.gridY;
+                            this.player.y = tile.y;
+                            this.hasMoved = true;
+                        } else if(tile.gridY == this.player.gY) {
+                            this.player.gX = tile.gridX;
+                            this.player.x = tile.x;
+                            this.hasMoved = true;
+                        };
+                    };
+                };
+            });
+        });
         this.player.currentRoom = newRoom;
         this.activeWindow = newRoom;
         return false;

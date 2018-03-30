@@ -89,6 +89,9 @@ function Player(){
                         this.isMoving = false;
                     }
                     break;
+                default:
+                    this.isMoving = false;
+                    break;
             }
         }
     };
