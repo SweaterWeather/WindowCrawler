@@ -8,6 +8,8 @@ function Player(){
     this.h = 50;
     this.speed = 100;
     this.grid = [];
+    this.gridY = [];
+    this.gridMoveRequestTile = "";
     this.isMoving = false;
     this.currentRoom = "";
     this.color = "#000";
@@ -19,27 +21,42 @@ function Player(){
         this.gY = y/25;
         this.color = color;
         this.currentRoom = "TRC1";
-        if (game.scene.dungeon) this.grid = game.scene.dungeon.rooms[this.currentRoom];
+        this.grid = roomTemplates[this.currentRoom].grid;
     };
     this.update = function(dt){
-        
         if(this.isMoving == false) {
             switch(true) {
                 case keyboard.isDown(keycode.w):
                     this.gY--;
-                    this.isMoving = true;
+                    if(this.checkMove()) {
+                        this.gY++;
+                    } else {
+                        this.isMoving = true;
+                    }
                     break;
                 case keyboard.isDown(keycode.a):
                     this.gX--;
-                    this.isMoving = true;
+                    if(this.checkMove()) {
+                        this.gX++;
+                    } else {
+                        this.isMoving = true;
+                    }
                     break;
                 case keyboard.isDown(keycode.s):
                     this.gY++;
-                    this.isMoving = true;
+                    if(this.checkMove()) {
+                        this.gY--;
+                    } else {
+                        this.isMoving = true;
+                    }
                     break;
                 case keyboard.isDown(keycode.d):
                     this.gX++;
-                    this.isMoving = true;
+                    if(this.checkMove()) {
+                        this.gX--;
+                    } else {
+                        this.isMoving = true;
+                    }
                     break;
             }
         } else if(this.isMoving == true) {
@@ -48,32 +65,58 @@ function Player(){
                     this.x += dt * this.speed;
                     if((this.gX * 25) <= this.x) {
                         this.x = this.gX * 25;
-                       this.isMoving = false;
+                        this.isMoving = false;
                     }
                     break;
                 case (this.gX * 25) < this.x:
                     this.x -= dt * this.speed;
                     if((this.gX * 25) >= this.x) {
                         this.x = this.gX * 25;
-                       this.isMoving = false;
+                        this.isMoving = false;
                     }
                     break;
                 case (this.gY * 25) > this.y:
                     this.y += dt * this.speed;
                     if((this.gY * 25) <= this.y) {
                         this.y = this.gY * 25;
-                       this.isMoving = false;
+                        this.isMoving = false;
                     }
                     break;
                 case (this.gY * 25) < this.y:
                     this.y -= dt * this.speed;
                     if((this.gY * 25) >= this.y) {
                         this.y = this.gY * 25;
-                       this.isMoving = false;
+                        this.isMoving = false;
                     }
                     break;
             }
         }
+    };
+    /*
+    checks to see if the player can move to the requested tile 
+    if the requested tile can be moved to, return false, if not, return true
+    */
+    this.checkMove = function() {
+        // updates the player with the current grid if it hasn't already
+        this.grid = roomTemplates[this.currentRoom].grid;
+        // makes sure this is a valid array slot
+        if(this.grid[this.gY] == undefined) return true;
+        // stores the Yposition's array in a variable
+        this.gridY = this.grid[this.gY];
+        // makes sure this is a valid array slot
+        if(this.gridY[this.gX] == undefined) return true;
+        // stores the stores the tile the player is trying to move to in a variable
+        this.gridMoveRequestTile = this.gridY[this.gX];
+        // checks to see if the requested tile can be moved into
+        switch (this.gridMoveRequestTile) {
+            case "    ":
+                return false;
+                break;
+            case "wall":
+                return true;
+                break;
+        };
+        return false;
     };
     this.draw = function(gfx){
         if(this.win.name != this.currentRoom) return;
