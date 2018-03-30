@@ -140,6 +140,6 @@ roomTemplates["TRR2"] = {
         ["wall", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "wall"],
         ["wall", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "wall"],
         ["wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall"]
-    ]
+    ],
     dL: "TRR1"
 };

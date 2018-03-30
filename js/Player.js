@@ -112,11 +112,12 @@ function Player(){
             case "    ":
                 return false;
                 break;
+            case "null":
             case "wall":
                 return true;
                 break;
             default:
-                if(game.scene.moveRoom)return game.scene.moveRoom();
+                if(game.scene.moveRoom)return game.scene.moveRoom(this.gridMoveRequestTile);
                 break;
         };
         return false;

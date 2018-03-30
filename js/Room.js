@@ -36,6 +36,11 @@ function Room(name){
                 int++;
             }
         });
+        
+        if(roomTemplates[this.name].dL)this.leftDoor = roomTemplates[this.name].dL;
+        if(roomTemplates[this.name].dR)this.rightDoor = roomTemplates[this.name].dR;
+        if(roomTemplates[this.name].dU)this.upDoor = roomTemplates[this.name].dU;
+        if(roomTemplates[this.name].dD)this.downDoor = roomTemplates[this.name].dD;
     };
     this.mb = function(x, y){
         var b = new Tile();
