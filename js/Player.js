@@ -14,7 +14,7 @@ function Player(){
     this.currentRoom = "";
     this.color = "#000";
     this.win = null;
-    this.canLightTorch = true;
+    this.canLightTorch = false;
     this.init = function(x, y, color){
         this.x = x;
         this.y = y;
@@ -123,6 +123,10 @@ function Player(){
                 break;
             default:
                 if(game.scene.moveRoom)return game.scene.moveRoom(this.gridMoveRequestTile);
+                break;
+            case "tchl":
+                this.canLightTorch = true;
+                return true;
                 break;
         };
         return false;
