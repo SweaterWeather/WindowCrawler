@@ -30,7 +30,7 @@ function Torch(){
     this.setWindow = function(win){
         this.win = win;
     }
-    this.shouldLight = function(){
-        
+    this.shouldLight = function(hasLight){
+        if(hasLight) this.isLit = true;
     }
 }
