@@ -9,7 +9,7 @@ function Player(){
     this.speed = 100;
     this.grid = [];
     this.gridY = [];
-    this.gridPosition = "";
+    this.gridMoveRequestTile = "";
     this.isMoving = false;
     this.currentRoom = "";
     this.color = "#000";
@@ -25,34 +25,43 @@ function Player(){
             this.grid = roomTemplates[this.currentRoom];
             this.grid = this.grid.grid;
             this.gridY = this.grid[this.gY];
-            this.gridPosition = this.gridY[this.gX];
-            
-            //this.grid = game.scene.dungeon.rooms;
-            console.log(this.grid);
-            console.log(roomTemplates[this.currentRoom]);
-            console.log(this.gridY);
-            console.log(this.gridPosition);
+            this.gridMoveRequestTile = this.gridY[this.gX];
         };
     };
     this.update = function(dt){
-        
         if(this.isMoving == false) {
             switch(true) {
                 case keyboard.isDown(keycode.w):
                     this.gY--;
-                    this.isMoving = true;
+                    if(this.CheckMove()) {
+                        this.gY++;
+                    } else {
+                        this.isMoving = true;
+                    }
                     break;
                 case keyboard.isDown(keycode.a):
                     this.gX--;
-                    this.isMoving = true;
+                    if(this.CheckMove()) {
+                        this.gX++;
+                    } else {
+                        this.isMoving = true;
+                    }
                     break;
                 case keyboard.isDown(keycode.s):
                     this.gY++;
-                    this.isMoving = true;
+                    if(this.CheckMove()) {
+                        this.gY--;
+                    } else {
+                        this.isMoving = true;
+                    }
                     break;
                 case keyboard.isDown(keycode.d):
                     this.gX++;
-                    this.isMoving = true;
+                    if(this.CheckMove()) {
+                        this.gX--;
+                    } else {
+                        this.isMoving = true;
+                    }
                     break;
             }
         } else if(this.isMoving == true) {
@@ -87,6 +96,23 @@ function Player(){
                     break;
             }
         }
+    };
+    this.CheckMove = function() {
+        this.grid = roomTemplates[this.currentRoom];
+        this.grid = this.grid.grid;
+        if(this.grid[this.gY] == undefined) return true;
+        this.gridY = this.grid[this.gY];
+        if(this.gridY[this.gX] == undefined) return true;
+        this.gridMoveRequestTile = this.gridY[this.gX];
+        switch (this.gridRequestMovePosition) {
+            case "    ":
+                return false;
+                break;
+            case "wall":
+                return true;
+                break;
+        };
+        return false;
     };
     this.draw = function(gfx){
         if(this.win.name != this.currentRoom) return;
