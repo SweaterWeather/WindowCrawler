@@ -55,6 +55,6 @@ function Room(name){
         
     };
     this.getTile = function(x, y){
-        return grid[y][x];
+        return this.grid[y][x];
     };
 }
