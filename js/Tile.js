@@ -81,10 +81,10 @@ function Tile(){
                 break;
             case "tchl":
                 this.isTorchLit = true;
-                this.sprite = new Sprite("imgs/floor_layout/torch-lit.png");
+                this.sprite = new Sprite("imgs/floor_layout/mastertorch-lit.png");
                 break;
             case "icbl":
-                this.sprite = new Sprite("../imgs/floor_layout/ice.png");
+                this.sprite = new Sprite("imgs/floor_layout/ice.png");
                 
                 break;
             default :
@@ -123,7 +123,15 @@ function Tile(){
     };
     this.lightTorch = function(player){
         if(this.tileType === "trch"){
-            this.isTorchLit = true;
+            this.isTorchLit = true;if(game.scene.dungeon)game.scene.dungeon.rooms[player.currentRoom].getTile(this.gridX, this.gridY - 1).meltIce(player);
+ 
+            if(game.scene.dungeon)game.scene.dungeon.rooms[player.currentRoom].getTile(this.gridX, this.gridY + 1).meltIce(player);
+ 
+            if(game.scene.dungeon)game.scene.dungeon.rooms[player.currentRoom].getTile(this.gridX - 1, this.gridY).meltIce(player);
+ 
+            if(game.scene.dungeon)game.scene.dungeon.rooms[player.currentRoom].getTile(this.gridX + 1, this.gridY).meltIce(player);
+ 
+            
             this.sprite = new Sprite("imgs/floor_layout/torch-lit.png");
             this.sprite.x = player.gX*25;
             this.sprite.y = player.gY*25;
@@ -133,7 +141,7 @@ function Tile(){
         if(this.tileType === "icbl") {
             console.log(player.gX*25);
             console.log(player.gY*25);
-            this.sprite = new Sprite("../imgs/floor_layout/tile-floor.png");
+            this.sprite = new Sprite("imgs/floor_layout/tile-floor.png");
             this.isMelted = true;
             this.sprite.x = this.x;
             this.sprite.y = this.y;
