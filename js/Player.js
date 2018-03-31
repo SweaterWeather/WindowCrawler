@@ -92,6 +92,7 @@ function Player(){
                 default:
                     this.isMoving = false;
                     break;
+
             }
         }
     };

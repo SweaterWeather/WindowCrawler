@@ -9,6 +9,7 @@ const game = {
     width:500,
     height:400,
     state: null,
+    pFocus: false,
     begin:function(id){
         
         const canvas = document.getElementById(id);
@@ -27,8 +28,13 @@ const game = {
         
         ///////////////////////////// LATE UPDATE:
         keyboard.update();
+        if(!this.pFocus){
+            keyboard.keys = [];
+            keyboard.prev = [];
+        }
         
         if(document.hasFocus())this.send([keyboard.keys, keyboard.prev]);
+        this.pFocus = document.hasFocus();
     },
     demoBlockUpdate:function(){
         

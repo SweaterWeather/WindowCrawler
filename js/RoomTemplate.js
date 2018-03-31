@@ -6,10 +6,10 @@ roomTemplates["TRC1"] = {
         ["wall", "wall", "wall", "wall", "TRU1", "TRU1", "wall", "wall", "wall", "wall"],
         ["wall", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "wall"],
         ["wall", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "wall"],
-        ["wall", "    ", "    ", "    ", "wall", "wall", "    ", "    ", "wall", "wall"],
-        ["TRL1", "    ", "    ", "wall", "wall", "wall", "wall", "    ", "TRR1", "wall"],
-        ["TRL1", "    ", "    ", "wall", "wall", "wall", "wall", "    ", "TRR1", "wall"],
-        ["wall", "    ", "    ", "    ", "wall", "wall", "    ", "    ", "wall", "wall"],
+        ["wall", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "wall"],
+        ["TRL1", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "TRR1"],
+        ["TRL1", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "TRR1"],
+        ["wall", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "wall"],
         ["wall", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "wall"],
         ["wall", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "wall"],
         ["wall", "wall", "wall", "wall", "TRD1", "TRD1", "wall", "wall", "wall", "wall"]
@@ -22,9 +22,9 @@ roomTemplates["TRC1"] = {
 roomTemplates["TRU1"] = {
     grid: [
         ["wall", "wall", "wall", "wall", "TRU2", "TRU2", "wall", "wall", "wall", "wall"],
-        ["wall", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "wall"],
-        ["wall", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "wall"],
-        ["wall", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "wall"],
+        ["wall", "wall", "    ", "    ", "    ", "    ", "    ", "    ", "wall", "wall"],
+        ["wall", "wall", "    ", "    ", "    ", "    ", "    ", "    ", "wall", "wall"],
+        ["wall", "wall", "    ", "    ", "    ", "    ", "    ", "    ", "wall", "wall"],
         ["wall", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "wall"],
         ["wall", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "wall"],
         ["wall", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "wall"],
@@ -43,9 +43,9 @@ roomTemplates["TRU2"] = {
         ["wall", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "wall"],
         ["wall", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "wall"],
         ["wall", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "wall"],
-        ["wall", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "wall"],
-        ["wall", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "wall"],
-        ["wall", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "wall"],
+        ["wall", "wall", "    ", "    ", "    ", "    ", "    ", "    ", "wall", "wall"],
+        ["wall", "wall", "    ", "    ", "    ", "    ", "    ", "    ", "wall", "wall"],
+        ["wall", "wall", "    ", "    ", "    ", "    ", "    ", "    ", "wall", "wall"],
         ["wall", "wall", "wall", "wall", "TRU1", "TRU1", "wall", "wall", "wall", "wall"]
     ],
     dD: "TRU1"
@@ -58,9 +58,9 @@ roomTemplates["TRD1"] = {
         ["wall", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "wall"],
         ["wall", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "wall"],
         ["wall", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "wall"],
-        ["wall", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "wall"],
-        ["wall", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "wall"],
-        ["wall", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "wall"],
+        ["wall", "wall", "    ", "    ", "    ", "    ", "    ", "    ", "wall", "wall"],
+        ["wall", "wall", "    ", "    ", "    ", "    ", "    ", "    ", "wall", "wall"],
+        ["wall", "wall", "    ", "    ", "    ", "    ", "    ", "    ", "wall", "wall"],
         ["wall", "wall", "wall", "wall", "TRD2", "TRD2", "wall", "wall", "wall", "wall"]
     ],
     dU: "TRC1",
@@ -69,9 +69,9 @@ roomTemplates["TRD1"] = {
 roomTemplates["TRD2"] = {
     grid: [
         ["wall", "wall", "wall", "wall", "TRD1", "TRD1", "wall", "wall", "wall", "wall"],
-        ["wall", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "wall"],
-        ["wall", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "wall"],
-        ["wall", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "wall"],
+        ["wall", "wall", "    ", "    ", "    ", "    ", "    ", "    ", "wall", "wall"],
+        ["wall", "wall", "    ", "    ", "    ", "    ", "    ", "    ", "wall", "wall"],
+        ["wall", "wall", "    ", "    ", "    ", "    ", "    ", "    ", "wall", "wall"],
         ["wall", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "wall"],
         ["wall", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "wall"],
         ["wall", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "wall"],
@@ -84,14 +84,14 @@ roomTemplates["TRD2"] = {
 roomTemplates["TRL1"] = {
     grid: [
         ["wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall"],
-        ["wall", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "wall"],
+        ["wall", "wall", "wall", "wall", "    ", "    ", "    ", "    ", "    ", "wall"],
         ["wall", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "wall"],
         ["wall", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "wall"],
         ["TRL2", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "TRC1"],
         ["TRL2", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "TRC1"],
         ["wall", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "wall"],
         ["wall", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "wall"],
-        ["wall", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "wall"],
+        ["wall", "wall", "wall", "wall", "    ", "    ", "    ", "    ", "    ", "wall"],
         ["wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall"]
     ],
     dL: "TRL2",
@@ -100,14 +100,14 @@ roomTemplates["TRL1"] = {
 roomTemplates["TRL2"] = {
     grid: [
         ["wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall"],
-        ["wall", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "wall"],
+        ["wall", "    ", "    ", "    ", "    ", "    ", "wall", "wall", "wall", "wall"],
         ["wall", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "wall"],
         ["wall", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "wall"],
         ["wall", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "TRL1"],
         ["wall", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "TRL1"],
         ["wall", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "wall"],
         ["wall", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "wall"],
-        ["wall", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "wall"],
+        ["wall", "    ", "    ", "    ", "    ", "    ", "wall", "wall", "wall", "wall"],
         ["wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall"]
     ],
     dR: "TRL1"
@@ -115,14 +115,14 @@ roomTemplates["TRL2"] = {
 roomTemplates["TRR1"] = {
     grid: [
         ["wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall"],
-        ["wall", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "wall"],
+        ["wall", "    ", "    ", "    ", "    ", "    ", "wall", "wall", "wall", "wall"],
         ["wall", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "wall"],
         ["wall", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "wall"],
         ["TRC1", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "TRR2"],
         ["TRC1", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "TRR2"],
         ["wall", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "wall"],
         ["wall", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "wall"],
-        ["wall", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "wall"],
+        ["wall", "    ", "    ", "    ", "    ", "    ", "wall", "wall", "wall", "wall"],
         ["wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall"]
     ],
     dL: "TRC1",
@@ -131,14 +131,14 @@ roomTemplates["TRR1"] = {
 roomTemplates["TRR2"] = {
     grid: [
         ["wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall"],
-        ["wall", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "wall"],
+        ["wall", "wall", "wall", "wall", "    ", "    ", "    ", "    ", "    ", "wall"],
         ["wall", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "wall"],
         ["wall", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "wall"],
         ["TRR1", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "wall"],
         ["TRR1", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "wall"],
         ["wall", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "wall"],
         ["wall", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "wall"],
-        ["wall", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "wall"],
+        ["wall", "wall", "wall", "wall", "    ", "    ", "    ", "    ", "    ", "wall"],
         ["wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall", "wall"]
     ],
     dL: "TRR1"

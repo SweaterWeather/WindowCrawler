@@ -44,7 +44,7 @@ function Tile(){
         if(game.scene.dungeon && this.gridY != 9 && this.gridX != 0)adDL = roomTemplates[room].grid[this.gridY + 1][this.gridX - 1];
         if(game.scene.dungeon && this.gridY != 0 && this.gridX != 9)adUR = roomTemplates[room].grid[this.gridY - 1][this.gridX + 1];
         if(game.scene.dungeon && this.gridY != 9 && this.gridX != 9)adDR = roomTemplates[room].grid[this.gridY + 1][this.gridX + 1];
-        console.log(this.tileType);
+        //console.log(this.tileType);
         
         switch(this.tileType){
             case "wall" :

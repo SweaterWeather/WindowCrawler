@@ -32,7 +32,7 @@ function ScenePlay(){
         
         for(var key in this.windows){
             var win = this.windows[key];
-            if(win.window && !win.window.closed && win.update && key == this.activeWindow)win.update(dt, this);
+            if(win.window && !win.window.closed && win.update && key == this.activeWindow || win.document.hasFocus() && win.update)win.update(dt, this);
             else if(win.window && !win.window.closed && win.update && this.tick%15 === 0)win.update(dt, this);
             else if(win.window.closed){
                 if(key == dungeonTemplates[this.currentDungeon].firstRoom){
@@ -61,6 +61,8 @@ function ScenePlay(){
             this.activeWindow = dungeonTemplates[this.currentDungeon].firstRoom;
             this.player.currentRoom = dungeonTemplates[this.currentDungeon].firstRoom;
             this.player.isMoving = false;
+            keyboard.keys = [];
+            keyboard.prev = [];
         } 
         
         this.player.update(dt);
@@ -101,89 +103,136 @@ function ScenePlay(){
         var collider1 = {};
         var collider2 = {};
         
+        if(!this.dungeon.rooms[win1.name] || !this.dungeon.rooms[win2.name])return false;
+        
+        
         switch(win1side){
             case "left":
-                collider1 = {up:win1.window.screenY + 50, down:win1.window.screenY + this.roomHeight - 50, left:win1.window.screenX - 25, right:win1.window.screenX};
-                collider2 = {up:win2.window.screenY + 50, down:win2.window.screenY + this.roomHeight - 50, right:win2.window.screenX + this.roomWidth + 25, left:win2.window.screenX + this.roomWidth};
+                collider1 = {up:win1.window.screenY + 50, down:win1.window.screenY + this.roomHeight - 50, left:win1.window.screenX - 25, right:win1.window.screenX + 10};
+                collider2 = {up:win2.window.screenY + 50, down:win2.window.screenY + this.roomHeight - 50, right:win2.window.screenX + this.roomWidth + 25, left:win2.window.screenX + this.roomWidth - 10};
+                if(this.dungeon.rooms[win1.name].adLeft == win2.name)this.dungeon.rooms[win1.name].adLeft = null;
                 break;
             case "right":
-                collider2 = {up:win2.window.screenY + 50, down:win2.window.screenY + this.roomHeight - 50, left:win2.window.screenX - 25, right:win2.window.screenX};
-                collider1 = {up:win1.window.screenY + 50, down:win1.window.screenY + this.roomHeight - 50, right:win1.window.screenX + this.roomWidth + 25, left:win1.window.screenX + this.roomWidth};
+                collider2 = {up:win2.window.screenY + 50, down:win2.window.screenY + this.roomHeight - 50, left:win2.window.screenX - 25, right:win2.window.screenX + 10};
+                collider1 = {up:win1.window.screenY + 50, down:win1.window.screenY + this.roomHeight - 50, right:win1.window.screenX + this.roomWidth + 25, left:win1.window.screenX + this.roomWidth - 10};
+                if(this.dungeon.rooms[win1.name].adRight == win2.name)this.dungeon.rooms[win1.name].adRight = null;
                 break;
             case "down":
-                collider2 = {left:win2.window.screenX + 50, right:win2.window.screenX + this.roomWidth - 50, up:win2.window.screenY - 25, down:win2.window.screenY};
-                collider1 = {left:win1.window.screenX + 50, right:win1.window.screenX + this.roomWidth - 50, down:win1.window.screenY + this.roomHeight + 25, up:win1.window.screenY + this.roomWidth};
+                collider2 = {left:win2.window.screenX + 50, right:win2.window.screenX + this.roomWidth - 50, up:win2.window.screenY - 25, down:win2.window.screenY + 10};
+                collider1 = {left:win1.window.screenX + 50, right:win1.window.screenX + this.roomWidth - 50, down:win1.window.screenY + this.roomHeight + 25, up:win1.window.screenY + this.roomHeight - 10};
+                if(this.dungeon.rooms[win1.name].adDown == win2.name)this.dungeon.rooms[win1.name].adDown = null;
                 break;
             case "up":
-                collider1 = {left:win1.window.screenX + 50, right:win1.window.screenX + this.roomWidth - 50, up:win1.window.screenY - 25, down:win1.window.screenY};
-                collider2 = {left:win2.window.screenX + 50, right:win2.window.screenX + this.roomWidth - 50, down:win2.window.screenY + this.roomHeight + 25, up:win2.window.screenY + this.roomWidth};
-                break;
-            default:
-                return false;
+                collider1 = {left:win1.window.screenX + 50, right:win1.window.screenX + this.roomWidth - 50, up:win1.window.screenY - 25, down:win1.window.screenY + 10};
+                collider2 = {left:win2.window.screenX + 50, right:win2.window.screenX + this.roomWidth - 50, down:win2.window.screenY + this.roomHeight + 25, up:win2.window.screenY + this.roomHeight - 10};
+                if(this.dungeon.rooms[win1.name].adUp == win2.name)this.dungeon.rooms[win1.name].adUp = null;
                 break;
         }
         
-        if(collider1.up > collider2.down) return false;
-        if(collider2.up > collider1.down) return false;
-        if(collider1.left > collider2.right)return false;
-        if(collider2.left > collider1.right)return false;
+        if(win1.window.closed || win2.window.closed)return false;
         
-        if(this.dungeon.rooms[win1.name].adLeft == win2)this.dungeon.rooms[win1.name].adLeft = null;
-        if(this.dungeon.rooms[win1.name].adRight == win2)this.dungeon.rooms[win1.name].adRight = null;
-        if(this.dungeon.rooms[win1.name].adUp == win2)this.dungeon.rooms[win1.name].adUp = null;
-        if(this.dungeon.rooms[win1.name].adDown == win2)this.dungeon.rooms[win1.name].adDown = null;
         
-        if(this.dungeon.rooms[win2.name].adLeft == win1)this.dungeon.rooms[win2.name].adLeft = null;
-        if(this.dungeon.rooms[win2.name].adRight == win1)this.dungeon.rooms[win2.name].adRight = null;
-        if(this.dungeon.rooms[win2.name].adUp == win1)this.dungeon.rooms[win2.name].adUp = null;
-        if(this.dungeon.rooms[win2.name].adDown == win1)this.dungeon.rooms[win2.name].adDown = null;
+        if(collider1.up > collider2.down || collider2.up > collider1.down || collider1.left > collider2.right || collider2.left > collider1.right){
+            return false;
+        }
         
         //console.log(win1side);
         switch(win1side){
             case "left":
-                this.dungeon.rooms[win1.name].adLeft = win2;
-                this.dungeon.rooms[win2.name].adRight = win1;
+                this.dungeon.rooms[win1.name].adLeft = win2.name;
+                //if(win1.document.hasFocus())console.log("collided left");
+                //this.dungeon.rooms[win2.name].adRight = win1.name;
                 break;
             case "right":
-                this.dungeon.rooms[win2.name].adLeft = win1;
-                this.dungeon.rooms[win1.name].adRight = win2;
+                //this.dungeon.rooms[win2.name].adLeft = win1.name;
+                this.dungeon.rooms[win1.name].adRight = win2.name;
+                //if(win1.document.hasFocus())console.log("collided right");
                 break;
             case "down":
-                this.dungeon.rooms[win1.name].adDown = win2;
-                this.dungeon.rooms[win2.name].adUp = win1;
+                this.dungeon.rooms[win1.name].adDown = win2.name;
+                //if(win1.document.hasFocus())console.log("collided down");
+                //this.dungeon.rooms[win2.name].adUp = win1.name;
                 break;
             case "up":
-                this.dungeon.rooms[win2.name].adDown = win1;
-                this.dungeon.rooms[win1.name].adUp = win2;
+                //this.dungeon.rooms[win2.name].adDown = win1.name;
+                this.dungeon.rooms[win1.name].adUp = win2.name;
+                //if(win1.document.hasFocus())console.log("collided up");
                 break;
             default:
                 return false;
                 break;
         }
         
+        //if(win1.document.hasFocus())console.log(this.dungeon.rooms[win1.name].adLeft + " left " + this.dungeon.rooms[win1.name].adRight + " right " + this.dungeon.rooms[win1.name].adUp + " up " + this.dungeon.rooms[win1.name].adDown + " down ");
+        
         return true;
     }
-    this.moveRoom = function(newRoom){
-        //console.log("hit a door");
-        if(!this.windows[newRoom] || this.windows[newRoom].window || this.windows[newRoom].window.closed) this.addWindow(0,0,newRoom);
-        this.hasMoved = false;
-        this.dungeon.rooms[newRoom].grid.forEach((array)=> {
-            array.forEach((tile)=>{
-                if(this.hasMoved == false) {
-                    if(this.player.currentRoom == tile.tileType){
-                        if(tile.gridX == this.player.gX) {
-                            this.player.gY = tile.gridY;
-                            this.player.y = tile.y;
-                            this.hasMoved = true;
-                        } else if(tile.gridY == this.player.gY) {
-                            this.player.gX = tile.gridX;
-                            this.player.x = tile.x;
-                            this.hasMoved = true;
-                        };
-                    };
-                };
+
+    this.moveRoom = function(neoRoom){
+        var newRoom = neoRoom;
+        
+        var dunX = 0;
+        var dunY = 0;
+        var block = true;
+        dungeonTemplates[this.currentDungeon].grid.forEach((y) =>{
+            y.forEach((x) => {
+               if(x === this.activeWindow){
+                   dunX = y.indexOf(x);
+                   dunY = dungeonTemplates[this.currentDungeon].grid.indexOf(y);
+               } 
             });
         });
+        
+        if(this.dungeon.rooms[this.activeWindow].adUp != null && this.dungeon.rooms[this.dungeon.rooms[this.activeWindow].adUp].downDoor != undefined 
+           && this.dungeon.rooms[this.activeWindow].upDoor != undefined && newRoom == dungeonTemplates[this.currentDungeon].grid[dunY - 1][dunX]){
+            
+            newRoom = this.dungeon.rooms[this.activeWindow].adUp;
+            block = false;
+        }
+        if(this.dungeon.rooms[this.activeWindow].adDown != null && this.dungeon.rooms[this.dungeon.rooms[this.activeWindow].adDown].upDoor != undefined 
+           && this.dungeon.rooms[this.activeWindow].downDoor != undefined && newRoom == dungeonTemplates[this.currentDungeon].grid[dunY + 1][dunX]){
+            
+            newRoom = this.dungeon.rooms[this.activeWindow].adDown;
+            block = false;
+        }
+        if(this.dungeon.rooms[this.activeWindow].adLeft != null && this.dungeon.rooms[this.dungeon.rooms[this.activeWindow].adLeft].rightDoor != undefined 
+           && this.dungeon.rooms[this.activeWindow].leftDoor != undefined && newRoom == dungeonTemplates[this.currentDungeon].grid[dunY][dunX - 1]){
+            
+            newRoom = this.dungeon.rooms[this.activeWindow].adLeft;
+            block = false;
+        }
+        if(this.dungeon.rooms[this.activeWindow].adRight != null && this.dungeon.rooms[this.dungeon.rooms[this.activeWindow].adRight].leftDoor != undefined 
+           && this.dungeon.rooms[this.activeWindow].rightDoor != undefined && newRoom == dungeonTemplates[this.currentDungeon].grid[dunY][dunX + 1]){
+            
+            newRoom = this.dungeon.rooms[this.activeWindow].adRight;
+            block = false;
+        }
+        if(!this.windows[newRoom] || !this.windows[newRoom].window || this.windows[newRoom].window.closed) this.addWindow(0,0,newRoom);
+        else if(block) return true;
+        //else console.log(this.dungeon.rooms[this.activeWindow].adUp)
+        
+        this.hasMoved = false;
+ 
+        this.dungeon.rooms[newRoom].grid.forEach((array)=> { 
+            array.forEach((tile)=>{
+                 if(this.hasMoved == false) { 
+                    if(this.player.currentRoom == tile.tileType){ 
+                        if(tile.gridX == this.player.gX) { 
+                            this.player.gY = tile.gridY; 
+                            this.player.y = tile.y; 
+                            this.hasMoved = true; 
+                            this.player.isMoving = false;
+                        } else if(tile.gridY == this.player.gY) { 
+                            this.player.gX = tile.gridX; 
+                            this.player.x = tile.x; 
+                            this.hasMoved = true; 
+                            this.player.isMoving = false;
+                        }; 
+                    }; 
+                }; 
+            }); 
+        }); 
+        
         this.player.currentRoom = newRoom;
         this.activeWindow = newRoom;
         return false;
