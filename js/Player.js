@@ -3,7 +3,7 @@ function Player(){
     this.x = 0;
     this.y = 0;
     this.gX = 0;
-    this.gy = 0;
+    this.gY = 0;
     this.w = 25;
     this.h = 50;
     this.speed = 100;
@@ -14,6 +14,7 @@ function Player(){
     this.currentRoom = "";
     this.color = "#000";
     this.win = null;
+    this.canLightTorch = false;
     this.init = function(x, y, color){
         this.x = x;
         this.y = y;
@@ -120,6 +121,14 @@ function Player(){
             case "wall":
                 return true;
                 break;
+            case "trch":
+                this.lightTorch();
+                return true;
+                break;
+            case "tchl":
+                this.canLightTorch = true;
+                return true;
+                break;
             default:
                 if(game.scene.moveRoom)return game.scene.moveRoom(this.gridMoveRequestTile);
                 break;
@@ -144,4 +153,9 @@ function Player(){
     this.setWindow = function(win){
         this.win = win;
     };
+    this.lightTorch = function(){
+        if(this.canLightTorch === true){
+            if(game.scene.dungeon)game.scene.dungeon.rooms[this.currentRoom].getTile(this.gX, this.gY).lightTorch(this);
+        }
+    }
 }

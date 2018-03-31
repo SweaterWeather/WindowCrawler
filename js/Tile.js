@@ -9,6 +9,7 @@ function Tile(){
     this.room = "";
     this.win = null;
     this.sprite = null;
+    this.isTorchLit = false;
     
     this.tileType = "tile"; //tile(floor), door code(insert the name of the room this door leads to), or wall for now
     //this.adUP = "null"; //tile(floor), door code(insert the name of the room this door leads to), or wall for now
@@ -74,6 +75,13 @@ function Tile(){
                 break;
             case "null":
                 break;
+            case "trch":
+                this.sprite = new Sprite("../imgs/floor_layout/torch.png");
+                break;
+            case "tchl":
+                this.isTorchLit = true;
+                this.sprite = new Sprite("../imgs/floor_layout/torch-lit.png");
+                break;
             default :
                 //if entryway
                      if(!adDOWN.match(door) && adRIGHT == "    ")this.sprite = new Sprite("../imgs/floor_layout/tile-wall-entry-leftUp.png");
@@ -108,4 +116,13 @@ function Tile(){
     this.setWindow = function(win){
         this.win = win;
     };
+    this.lightTorch = function(player){
+        if(this.tileType === "trch"){
+            this.isTorchLit = true;
+            this.sprite = new Sprite("../imgs/floor_layout/torch-lit.png");
+            this.sprite.x = player.gX*25;
+            this.sprite.y = player.gY*25;
+        }
+    }
+    
 }
