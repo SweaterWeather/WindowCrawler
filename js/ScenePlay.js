@@ -173,16 +173,27 @@ function ScenePlay(){
         
         var dunX = 0;
         var dunY = 0;
+        var newx = 0;
+        var newy = 0;
         var block = true;
         var otherTile = this.player.currentRoom;
+        var dir = '';
         dungeonTemplates[this.currentDungeon].grid.forEach((y) =>{
             y.forEach((x) => {
                if(x === this.activeWindow){
                    dunX = y.indexOf(x);
                    dunY = dungeonTemplates[this.currentDungeon].grid.indexOf(y);
-               } 
+               }
+                if(x === newRoom){
+                   newx = y.indexOf(x);
+                   newy = dungeonTemplates[this.currentDungeon].grid.indexOf(y);
+                }
             });
         });
+        if(newx > dunX)dir = 'right';
+        else if(newx < dunX)dir = 'left';
+        else if(newy < dunY)dir = 'up';
+        else if(newy > dunY)dir = 'down';
         
         if(this.dungeon.rooms[this.activeWindow].adUp != null && this.dungeon.rooms[this.dungeon.rooms[this.activeWindow].adUp].downDoor != undefined 
            && this.dungeon.rooms[this.activeWindow].upDoor != undefined && newRoom == dungeonTemplates[this.currentDungeon].grid[dunY - 1][dunX]){
@@ -212,7 +223,29 @@ function ScenePlay(){
             otherTile = this.dungeon.rooms[this.dungeon.rooms[this.activeWindow].adRight].leftDoor;
             block = false;
         }
-        if(!this.windows[newRoom] || !this.windows[newRoom].window || this.windows[newRoom].window.closed) this.addWindow(0,0,newRoom);
+        if(!this.windows[newRoom] || !this.windows[newRoom].window || this.windows[newRoom].window.closed) {
+            
+            switch(dir){
+                case 'up':
+                    newx = this.windows[this.activeWindow].window.screenX;
+                    newy = this.windows[this.activeWindow].window.screenY - this.roomHeight;
+                    break;
+                case 'down':
+                    newx = this.windows[this.activeWindow].window.screenX;
+                    newy = this.windows[this.activeWindow].window.screenY + this.roomHeight;
+                    break;
+                case 'left':
+                    newx = this.windows[this.activeWindow].window.screenX - this.roomWidth;
+                    newy = this.windows[this.activeWindow].window.screenY;
+                    break;
+                case 'right':
+                    newx = this.windows[this.activeWindow].window.screenX + this.roomWidth;
+                    newy = this.windows[this.activeWindow].window.screenY;
+                    break;
+            }
+            
+            this.addWindow(newx,newy,newRoom);
+        }
         else if(block) return true;
         //else console.log(this.dungeon.rooms[this.activeWindow].adUp)
         
