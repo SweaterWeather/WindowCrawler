@@ -1,9 +1,14 @@
 function Room(name){
     
-    var adLeft = null;
-    var adRight = null;
-    var adUp = null;
-    var adDown = null;
+    this.adLeft = null;
+    this.adRight = null;
+    this.adUp = null;
+    this.adDown = null;
+    
+    this.leftDoor = null;
+    this.rightDoor = null;
+    this.upDoor = null;
+    this.downDoor = null;
     
     this.win = null;
     this.name = name;
@@ -31,6 +36,11 @@ function Room(name){
                 int++;
             }
         });
+        
+        if(roomTemplates[this.name].dL)this.leftDoor = roomTemplates[this.name].dL;
+        if(roomTemplates[this.name].dR)this.rightDoor = roomTemplates[this.name].dR;
+        if(roomTemplates[this.name].dU)this.upDoor = roomTemplates[this.name].dU;
+        if(roomTemplates[this.name].dD)this.downDoor = roomTemplates[this.name].dD;
     };
     this.mb = function(x, y){
         var b = new Tile();
@@ -55,6 +65,6 @@ function Room(name){
         
     };
     this.getTile = function(x, y){
-        return grid[y][x];
+        return this.grid[y][x];
     };
 }

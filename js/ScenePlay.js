@@ -7,6 +7,7 @@ function ScenePlay(){
     this.dungeon;
     this.currentDungeon = '';
     this.player = null;
+    this.tick = 0;
     
     this.renderQ = [];
     
@@ -31,7 +32,8 @@ function ScenePlay(){
         
         for(var key in this.windows){
             var win = this.windows[key];
-            if(win.window && !win.window.closed && win.update)win.update(dt, this);
+            if(win.window && !win.window.closed && win.update && key == this.activeWindow)win.update(dt, this);
+            else if(win.window && !win.window.closed && win.update && this.tick%15 === 0)win.update(dt, this);
             else if(win.window.closed){
                 if(key == dungeonTemplates[this.currentDungeon].firstRoom){
                     var sW = document.documentElement.clientWidth / 2 - this.roomWidth / 2;
@@ -40,7 +42,7 @@ function ScenePlay(){
 
                 }
             }
-            if(win.document.hasFocus())this.activeWindow = key;
+            if(this.player.currentRoom == key)this.activeWindow = key;
             
             if(win.window){
                 for (var key2 in this.windows){
@@ -55,7 +57,14 @@ function ScenePlay(){
                 }
             }
         }
+        if(this.windows[this.activeWindow] && this.windows[this.activeWindow].window.closed){
+            this.activeWindow = dungeonTemplates[this.currentDungeon].firstRoom;
+            this.player.currentRoom = dungeonTemplates[this.currentDungeon].firstRoom;
+            this.player.isMoving = false;
+        } 
+        
         this.player.update(dt);
+        this.tick++;
     };
     this.draw = function(gfx){
         game.clear();
@@ -153,6 +162,31 @@ function ScenePlay(){
         }
         
         return true;
+    }
+    this.moveRoom = function(newRoom){
+        //console.log("hit a door");
+        if(!this.windows[newRoom] || this.windows[newRoom].window || this.windows[newRoom].window.closed) this.addWindow(0,0,newRoom);
+        this.hasMoved = false;
+        this.dungeon.rooms[newRoom].grid.forEach((array)=> {
+            array.forEach((tile)=>{
+                if(this.hasMoved == false) {
+                    if(this.player.currentRoom == tile.tileType){
+                        if(tile.gridX == this.player.gX) {
+                            this.player.gY = tile.gridY;
+                            this.player.y = tile.y;
+                            this.hasMoved = true;
+                        } else if(tile.gridY == this.player.gY) {
+                            this.player.gX = tile.gridX;
+                            this.player.x = tile.x;
+                            this.hasMoved = true;
+                        };
+                    };
+                };
+            });
+        });
+        this.player.currentRoom = newRoom;
+        this.activeWindow = newRoom;
+        return false;
     }
     this.incomingKeyboard = function(keys){
         keyboard.keys = keys[0].slice(0);
