@@ -56,32 +56,32 @@ function Tile(){
                 if(!adLEFT.match(door)) adLEFT = "wall";
                 if(!adRIGHT.match(door)) adRIGHT = "wall";
                 
-                     if(adDR == "    " && adDOWN == "wall" && adRIGHT == "wall")this.sprite = new Sprite("../imgs/floor_layout/tile-wall-corner-topLeft.png"); //inner-corners
-                else if(adDL == "    " && adDOWN == "wall" && adLEFT == "wall")this.sprite = new Sprite("../imgs/floor_layout/tile-wall-corner-topRight.png");
-                else if(adUR == "    " && adUP == "wall" && adRIGHT == "wall")this.sprite = new Sprite("../imgs/floor_layout/tile-wall-corner-bottomLeft.png");
-                else if(adUL == "    " && adUP == "wall" && adLEFT == "wall")this.sprite = new Sprite("../imgs/floor_layout/tile-wall-corner-bottomRight.png");
-                else if(adDR == "    " && adDOWN == "    " && adRIGHT == "    ")this.sprite = new Sprite("../imgs/floor_layout/tile-wall-corner-topLeft-flip.png"); //outer-corners
-                else if(adDL == "    " && adDOWN == "    " && adLEFT == "    ")this.sprite = new Sprite("../imgs/floor_layout/tile-wall-corner-topRight-flip.png");
-                else if(adUR == "    " && adUP == "    " && adRIGHT == "    ")this.sprite = new Sprite("../imgs/floor_layout/tile-wall-corner-bottomLeft-flip.png");
-                else if(adUL == "    " && adUP == "    " && adLEFT == "    ")this.sprite = new Sprite("../imgs/floor_layout/tile-wall-corner-bottomRight-flip.png");
-                else if(adUP == "wall" && adDOWN == "wall" && adRIGHT == "    ") this.sprite = new Sprite("../imgs/floor_layout/tile-wall-left.png"); //flat walls
-                else if(adUP == "wall" && adDOWN == "wall" && adLEFT == "    ") this.sprite = new Sprite("../imgs/floor_layout/tile-wall-right.png");
-                else if(adDOWN == "    " && adLEFT == "wall" && adRIGHT == "wall") this.sprite = new Sprite("../imgs/floor_layout/tile-wall-top.png");
-                else if(adUP == "    " && adLEFT == "wall" && adRIGHT == "wall") this.sprite = new Sprite("../imgs/floor_layout/tile-wall-bottom.png");
-                else if(adUP == "wall" && adLEFT == "wall" && adRIGHT == "wall" && adDOWN == "wall") this.sprite = new Sprite("../imgs/floor_layout/tile-wall-solid.png");
-                else this.sprite = new Sprite("../imgs/player/player-test.png");
+                     if(adDR == "    " && adDOWN == "wall" && adRIGHT == "wall")this.sprite = new Sprite("imgs/floor_layout/tile-wall-corner-topLeft.png"); //inner-corners
+                else if(adDL == "    " && adDOWN == "wall" && adLEFT == "wall")this.sprite = new Sprite("imgs/floor_layout/tile-wall-corner-topRight.png");
+                else if(adUR == "    " && adUP == "wall" && adRIGHT == "wall")this.sprite = new Sprite("imgs/floor_layout/tile-wall-corner-bottomLeft.png");
+                else if(adUL == "    " && adUP == "wall" && adLEFT == "wall")this.sprite = new Sprite("imgs/floor_layout/tile-wall-corner-bottomRight.png");
+                else if(adDR == "    " && adDOWN == "    " && adRIGHT == "    ")this.sprite = new Sprite("imgs/floor_layout/tile-wall-corner-topLeft-flip.png"); //outer-corners
+                else if(adDL == "    " && adDOWN == "    " && adLEFT == "    ")this.sprite = new Sprite("imgs/floor_layout/tile-wall-corner-topRight-flip.png");
+                else if(adUR == "    " && adUP == "    " && adRIGHT == "    ")this.sprite = new Sprite("imgs/floor_layout/tile-wall-corner-bottomLeft-flip.png");
+                else if(adUL == "    " && adUP == "    " && adLEFT == "    ")this.sprite = new Sprite("imgs/floor_layout/tile-wall-corner-bottomRight-flip.png");
+                else if(adUP == "wall" && adDOWN == "wall" && adRIGHT == "    ") this.sprite = new Sprite("imgs/floor_layout/tile-wall-left.png"); //flat walls
+                else if(adUP == "wall" && adDOWN == "wall" && adLEFT == "    ") this.sprite = new Sprite("imgs/floor_layout/tile-wall-right.png");
+                else if(adDOWN == "    " && adLEFT == "wall" && adRIGHT == "wall") this.sprite = new Sprite("imgs/floor_layout/tile-wall-top.png");
+                else if(adUP == "    " && adLEFT == "wall" && adRIGHT == "wall") this.sprite = new Sprite("imgs/floor_layout/tile-wall-bottom.png");
+                else if(adUP == "wall" && adLEFT == "wall" && adRIGHT == "wall" && adDOWN == "wall") this.sprite = new Sprite("imgs/floor_layout/tile-wall-solid.png");
+                else this.sprite = new Sprite("imgs/player/player-test.png");
                 break;
             case "    " :
-                this.sprite = new Sprite("../imgs/floor_layout/tile-floor.png");
+                this.sprite = new Sprite("imgs/floor_layout/tile-floor.png");
                 break;
             case "null":
                 break;
             case "trch":
-                this.sprite = new Sprite("../imgs/floor_layout/torch.png");
+                this.sprite = new Sprite("imgs/floor_layout/torch.png");
                 break;
             case "tchl":
                 this.isTorchLit = true;
-                this.sprite = new Sprite("../imgs/floor_layout/mastertorch-lit.png");
+                this.sprite = new Sprite("imgs/floor_layout/torch-lit.png");
                 break;
             case "icbl":
                 this.sprite = new Sprite("../imgs/floor_layout/ice.png");
@@ -89,15 +89,15 @@ function Tile(){
                 break;
             default :
                 //if entryway
-                     if(!adDOWN.match(door) && adRIGHT == "    ")this.sprite = new Sprite("../imgs/floor_layout/tile-wall-entry-leftUp.png");
-                else if(!adUP.match(door) && adRIGHT == "    ")this.sprite = new Sprite("../imgs/floor_layout/tile-wall-entry-leftDown.png");
-                else if(!adDOWN.match(door) && adLEFT == "    ")this.sprite = new Sprite("../imgs/floor_layout/tile-wall-entry-rightUp.png");
-                else if(!adUP.match(door) && adLEFT == "    ")this.sprite = new Sprite("../imgs/floor_layout/tile-wall-entry-rightDown.png");
-                else if(adDOWN == "    " && !adLEFT.match(door))this.sprite = new Sprite("../imgs/floor_layout/tile-wall-entry-upRight.png");
-                else if(adDOWN == "    " && !adRIGHT.match(door))this.sprite = new Sprite("../imgs/floor_layout/tile-wall-entry-upLeft.png");
-                else if(adUP == "    " && !adLEFT.match(door))this.sprite = new Sprite("../imgs/floor_layout/tile-wall-entry-downRight.png");
-                else if(adUP == "    " && !adRIGHT.match(door))this.sprite = new Sprite("../imgs/floor_layout/tile-wall-entry-downLeft.png");
-                else this.sprite = new Sprite("../imgs/player/player-test.png");
+                     if(!adDOWN.match(door) && adRIGHT == "    ")this.sprite = new Sprite("imgs/floor_layout/tile-wall-entry-leftUp.png");
+                else if(!adUP.match(door) && adRIGHT == "    ")this.sprite = new Sprite("imgs/floor_layout/tile-wall-entry-leftDown.png");
+                else if(!adDOWN.match(door) && adLEFT == "    ")this.sprite = new Sprite("imgs/floor_layout/tile-wall-entry-rightUp.png");
+                else if(!adUP.match(door) && adLEFT == "    ")this.sprite = new Sprite("imgs/floor_layout/tile-wall-entry-rightDown.png");
+                else if(adDOWN == "    " && !adLEFT.match(door))this.sprite = new Sprite("imgs/floor_layout/tile-wall-entry-upRight.png");
+                else if(adDOWN == "    " && !adRIGHT.match(door))this.sprite = new Sprite("imgs/floor_layout/tile-wall-entry-upLeft.png");
+                else if(adUP == "    " && !adLEFT.match(door))this.sprite = new Sprite("imgs/floor_layout/tile-wall-entry-downRight.png");
+                else if(adUP == "    " && !adRIGHT.match(door))this.sprite = new Sprite("imgs/floor_layout/tile-wall-entry-downLeft.png");
+                else this.sprite = new Sprite("imgs/player/player-test.png");
                 break;
         } 
         
@@ -124,11 +124,7 @@ function Tile(){
     this.lightTorch = function(player){
         if(this.tileType === "trch"){
             this.isTorchLit = true;
-            if(game.scene.dungeon)game.scene.dungeon.rooms[player.currentRoom].getTile(this.gridX, this.gridY - 1).meltIce(player);
-            if(game.scene.dungeon)game.scene.dungeon.rooms[player.currentRoom].getTile(this.gridX, this.gridY + 1).meltIce(player);
-            if(game.scene.dungeon)game.scene.dungeon.rooms[player.currentRoom].getTile(this.gridX - 1, this.gridY).meltIce(player);
-            if(game.scene.dungeon)game.scene.dungeon.rooms[player.currentRoom].getTile(this.gridX + 1, this.gridY).meltIce(player);
-            this.sprite = new Sprite("../imgs/floor_layout/torch-lit.png");
+            this.sprite = new Sprite("imgs/floor_layout/torch-lit.png");
             this.sprite.x = player.gX*25;
             this.sprite.y = player.gY*25;
         };
