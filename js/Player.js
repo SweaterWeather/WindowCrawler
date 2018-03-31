@@ -121,12 +121,16 @@ function Player(){
             case "wall":
                 return true;
                 break;
-            default:
-                if(game.scene.moveRoom)return game.scene.moveRoom(this.gridMoveRequestTile);
+            case "trch":
+                this.lightTorch();
+                return true;
                 break;
             case "tchl":
                 this.canLightTorch = true;
                 return true;
+                break;
+            default:
+                if(game.scene.moveRoom)return game.scene.moveRoom(this.gridMoveRequestTile);
                 break;
         };
         return false;
