@@ -174,6 +174,7 @@ function ScenePlay(){
         var dunX = 0;
         var dunY = 0;
         var block = true;
+        var otherTile = this.player.currentRoom;
         dungeonTemplates[this.currentDungeon].grid.forEach((y) =>{
             y.forEach((x) => {
                if(x === this.activeWindow){
@@ -187,24 +188,28 @@ function ScenePlay(){
            && this.dungeon.rooms[this.activeWindow].upDoor != undefined && newRoom == dungeonTemplates[this.currentDungeon].grid[dunY - 1][dunX]){
             
             newRoom = this.dungeon.rooms[this.activeWindow].adUp;
+            otherTile = this.dungeon.rooms[this.dungeon.rooms[this.activeWindow].adUp].downDoor;
             block = false;
         }
         if(this.dungeon.rooms[this.activeWindow].adDown != null && this.dungeon.rooms[this.dungeon.rooms[this.activeWindow].adDown].upDoor != undefined 
            && this.dungeon.rooms[this.activeWindow].downDoor != undefined && newRoom == dungeonTemplates[this.currentDungeon].grid[dunY + 1][dunX]){
             
             newRoom = this.dungeon.rooms[this.activeWindow].adDown;
+            otherTile = this.dungeon.rooms[this.dungeon.rooms[this.activeWindow].adDown].upDoor;
             block = false;
         }
         if(this.dungeon.rooms[this.activeWindow].adLeft != null && this.dungeon.rooms[this.dungeon.rooms[this.activeWindow].adLeft].rightDoor != undefined 
            && this.dungeon.rooms[this.activeWindow].leftDoor != undefined && newRoom == dungeonTemplates[this.currentDungeon].grid[dunY][dunX - 1]){
             
             newRoom = this.dungeon.rooms[this.activeWindow].adLeft;
+            otherTile = this.dungeon.rooms[this.dungeon.rooms[this.activeWindow].adLeft].rightDoor;
             block = false;
         }
         if(this.dungeon.rooms[this.activeWindow].adRight != null && this.dungeon.rooms[this.dungeon.rooms[this.activeWindow].adRight].leftDoor != undefined 
            && this.dungeon.rooms[this.activeWindow].rightDoor != undefined && newRoom == dungeonTemplates[this.currentDungeon].grid[dunY][dunX + 1]){
             
             newRoom = this.dungeon.rooms[this.activeWindow].adRight;
+            otherTile = this.dungeon.rooms[this.dungeon.rooms[this.activeWindow].adRight].leftDoor;
             block = false;
         }
         if(!this.windows[newRoom] || !this.windows[newRoom].window || this.windows[newRoom].window.closed) this.addWindow(0,0,newRoom);
@@ -216,7 +221,7 @@ function ScenePlay(){
         this.dungeon.rooms[newRoom].grid.forEach((array)=> { 
             array.forEach((tile)=>{
                  if(this.hasMoved == false) { 
-                    if(this.player.currentRoom == tile.tileType){ 
+                    if(otherTile == tile.tileType){ 
                         if(tile.gridX == this.player.gX) { 
                             this.player.gY = tile.gridY; 
                             this.player.y = tile.y; 
