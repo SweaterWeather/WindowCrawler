@@ -123,10 +123,17 @@ function Player(){
                 break;
             case "trch":
                 this.lightTorch();
+                this.canLightTorch = false;
+                this.color = "#000";
                 return true;
                 break;
             case "tchl":
                 this.canLightTorch = true;
+                this.color = "#E0452B";
+                return true;
+                break;
+            case "icbl":
+                if (game.scene.dungeon.rooms[this.currentRoom].getTile(this.gX, this.gY).isMelted == true) return false;
                 return true;
                 break;
             default:
@@ -139,7 +146,7 @@ function Player(){
         if(this.win.name != this.currentRoom) return;
         gfx.fillStyle = this.color;
         gfx.translate(this.x, this.y);
-        gfx.strokeStyle = '#000';
+        gfx.strokeStyle = this.color;
         gfx.fillRect(0, -25, this.w, this.h);
         gfx.strokeRect(0, -25, this.w, this.h);
         gfx.resetTransform();

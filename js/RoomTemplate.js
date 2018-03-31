@@ -5,12 +5,12 @@ roomTemplates["TRC1"] = {
     grid: [
         ["wall", "wall", "wall", "wall", "TRU1", "TRU1", "wall", "wall", "wall", "wall"],
         ["wall", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "wall"],
-        ["wall", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "wall"],
-        ["wall", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "wall"],
-        ["TRL1", "    ", "tchl", "    ", "    ", "    ", "    ", "trch", "    ", "TRR1"],
-        ["TRL1", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "TRR1"],
-        ["wall", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "wall"],
-        ["wall", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "wall"],
+        ["wall", "    ", "icbl", "trch", "icbl", "icbl", "trch", "icbl", "    ", "wall"],
+        ["wall", "    ", "trch", "    ", "    ", "    ", "    ", "trch", "    ", "wall"],
+        ["TRL1", "    ", "icbl", "    ", "    ", "tchl", "    ", "icbl", "    ", "TRR1"],
+        ["TRL1", "    ", "icbl", "    ", "    ", "    ", "    ", "icbl", "    ", "TRR1"],
+        ["wall", "    ", "trch", "    ", "    ", "    ", "    ", "trch", "    ", "wall"],
+        ["wall", "    ", "icbl", "trch", "icbl", "icbl", "trch", "icbl", "    ", "wall"],
         ["wall", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "    ", "wall"],
         ["wall", "wall", "wall", "wall", "TRD1", "TRD1", "wall", "wall", "wall", "wall"]
     ],
