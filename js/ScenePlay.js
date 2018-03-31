@@ -209,6 +209,29 @@ function ScenePlay(){
         if(!this.windows[newRoom] || !this.windows[newRoom].window || this.windows[newRoom].window.closed) this.addWindow(0,0,newRoom);
         else if(block) return true;
         //else console.log(this.dungeon.rooms[this.activeWindow].adUp)
+        
+        this.hasMoved = false;
+ 
+        this.dungeon.rooms[newRoom].grid.forEach((array)=> { 
+            array.forEach((tile)=>{
+                 if(this.hasMoved == false) { 
+                    if(this.player.currentRoom == tile.tileType){ 
+                        if(tile.gridX == this.player.gX) { 
+                            this.player.gY = tile.gridY; 
+                            this.player.y = tile.y; 
+                            this.hasMoved = true; 
+                            this.player.isMoving = false;
+                        } else if(tile.gridY == this.player.gY) { 
+                            this.player.gX = tile.gridX; 
+                            this.player.x = tile.x; 
+                            this.hasMoved = true; 
+                            this.player.isMoving = false;
+                        }; 
+                    }; 
+                }; 
+            }); 
+        }); 
+        
         this.player.currentRoom = newRoom;
         this.activeWindow = newRoom;
         return false;
