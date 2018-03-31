@@ -167,6 +167,7 @@ function ScenePlay(){
         
         return true;
     }
+
     this.moveRoom = function(neoRoom){
         var newRoom = neoRoom;
         

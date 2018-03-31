@@ -90,11 +90,9 @@ function Player(){
                     }
                     break;
                 default:
- 
                     this.isMoving = false;
- 
                     break;
- 
+
             }
         }
     };
